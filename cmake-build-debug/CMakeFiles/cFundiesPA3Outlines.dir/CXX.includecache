@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.cpp
+Car.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.h
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.h
+iostream
+-
+Dealer.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
+iostream
+-
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.cpp
+SystemFunctions.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.h
+Dealer.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
+iostream
+-
+fstream
+-
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.h
+Car.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.h
+vector
+-
+
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/main.cpp
+SystemFunctions.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.h
+iostream
+-
+
