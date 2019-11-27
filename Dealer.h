@@ -29,17 +29,25 @@ public:
     //custom constructor
     Car(int, string, string, int, double);
     //setters
-    void setVIN(string v) { VIN = std::move(v); }
-    void setMake(string ma) { make = std::move(ma); }
-    void setModel(string mo) { model = std::move(mo); }
-    void setYear(int y) { year = y; }
-    void setPrice(double p) { price = p; }
+    void setVIN(string _VIN);
+
+    void setMake(string _make);
+
+    void setModel(string _model);
+
+    void setYear(int _year);
+
+    void setPrice(double _price);
     //getters
-    string getVIN() { return VIN; }
-    string getMake() { return make; }
-    string getModel() { return model; }
-    int getYear() { return year; }
-    double getPrice() { return price; }
+    string getVIN();
+
+    string getMake();
+
+    string getModel();
+
+    int getYear();
+
+    double getPrice();
     //<< override
     friend ostream& operator<<(ostream& os, const Car& car);
 
@@ -58,15 +66,20 @@ public:
     //custom contstructor
     Dealer(string, int, int);
     //setters
-    void setDealerName(string n) { dealerName = std::move(n); }
-    void setDealerNumber(int num) { dealerNumber = num; }
+    void setDealerName(string n);
+
+    void setDealerNumber(int num);
     void setCarArrayPtr(Car* carPtr);
-    void setNumberOfCars(int cars) { numberOfCars = cars; }
+
+    void setNumberOfCars(int cars);
     //getters
-    string getDealerName() { return dealerName; }
-    int getDealerNumber() { return dealerNumber; }
-    Car* getCarArrayPtr() { return carArrayPtr; }
-    int getNumberOfCars() { return numberOfCars; }
+    string getDealerName();
+
+    int getDealerNumber();
+
+    Car *getCarArrayPtr();
+
+    int getNumberOfCars();
     //<< override
     friend ostream & operator << (ostream &out, const Dealer& dr);
 };

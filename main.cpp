@@ -27,7 +27,7 @@ int main() {
 
         switch (userChoice) {
             case 1:
-                readDealersAndCarsFromFile(infile, inventory);
+                readFromFile(infile, inventory);
                 //Adds output buffer to make it more readable.
                 std::cout << std::endl;
                 break;
@@ -39,8 +39,6 @@ int main() {
                 break;
             case 4:
                 addCarToDealer(inventory);
-                //Adds output buffer to make it more readable.
-                std::cout << std::endl;
                 break;
             case 5:
                 listAndModifyCar(inventory);
@@ -51,7 +49,7 @@ int main() {
             case 7:
                 writeDealersCarsToFile(outfile, inventory);
                 break;
-            case 8:
+            case 0:
                 std::cout << "Thank you for visiting!\n" << std::endl;
                 break;
             default:
