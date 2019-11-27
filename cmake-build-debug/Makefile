@@ -123,33 +123,6 @@ cFundiesPA3Outlines/fast:
 	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/build
 .PHONY : cFundiesPA3Outlines/fast
 
-Car.o: Car.cpp.o
-
-.PHONY : Car.o
-
-# target to build an object file
-Car.cpp.o:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o
-.PHONY : Car.cpp.o
-
-Car.i: Car.cpp.i
-
-.PHONY : Car.i
-
-# target to preprocess a source file
-Car.cpp.i:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.i
-.PHONY : Car.cpp.i
-
-Car.s: Car.cpp.s
-
-.PHONY : Car.s
-
-# target to generate assembly for a file
-Car.cpp.s:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.s
-.PHONY : Car.cpp.s
-
 Dealer.o: Dealer.cpp.o
 
 .PHONY : Dealer.o
@@ -176,33 +149,6 @@ Dealer.s: Dealer.cpp.s
 Dealer.cpp.s:
 	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.s
 .PHONY : Dealer.cpp.s
-
-SystemFunctions.o: SystemFunctions.cpp.o
-
-.PHONY : SystemFunctions.o
-
-# target to build an object file
-SystemFunctions.cpp.o:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o
-.PHONY : SystemFunctions.cpp.o
-
-SystemFunctions.i: SystemFunctions.cpp.i
-
-.PHONY : SystemFunctions.i
-
-# target to preprocess a source file
-SystemFunctions.cpp.i:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.i
-.PHONY : SystemFunctions.cpp.i
-
-SystemFunctions.s: SystemFunctions.cpp.s
-
-.PHONY : SystemFunctions.s
-
-# target to generate assembly for a file
-SystemFunctions.cpp.s:
-	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.s
-.PHONY : SystemFunctions.cpp.s
 
 main.o: main.cpp.o
 
@@ -240,15 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... cFundiesPA3Outlines"
-	@echo "... Car.o"
-	@echo "... Car.i"
-	@echo "... Car.s"
 	@echo "... Dealer.o"
 	@echo "... Dealer.i"
 	@echo "... Dealer.s"
-	@echo "... SystemFunctions.o"
-	@echo "... SystemFunctions.i"
-	@echo "... SystemFunctions.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

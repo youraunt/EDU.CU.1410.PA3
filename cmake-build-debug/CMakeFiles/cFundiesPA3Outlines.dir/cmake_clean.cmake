@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o"
   "CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.o"
-  "CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o"
   "CMakeFiles/cFundiesPA3Outlines.dir/main.cpp.o"
   "cFundiesPA3Outlines"
   "cFundiesPA3Outlines.pdb"

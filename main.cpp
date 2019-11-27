@@ -10,13 +10,57 @@
 
 
 int main() {
-    //Declare a vector to hold our inventory
-    std::vector<Car> inventory;
-    Car *carArrayPtr = nullptr;
-    while (true){
-        if(!displayUserInterface(inventory, carArrayPtr)) break;
-    }
-    exitProgram();
-}/// main
+    int userChoice;
+    std::ifstream infile;
+    std::ofstream outfile;
 
+    std::vector<Dealer> inventory;
+
+
+
+    do {
+        printMenu();
+        std::cin >> userChoice;
+
+        //Adds output buffer to make it more readable.
+        std::cout << std::endl;
+
+        switch (userChoice) {
+            case 1:
+                readDealersAndCarsFromFile(infile, inventory);
+                //Adds output buffer to make it more readable.
+                std::cout << std::endl;
+                break;
+            case 2:
+                displayDealers(inventory);
+                break;
+            case 3:
+                displayCarsFromDealer(inventory);
+                break;
+            case 4:
+                addCarToDealer(inventory);
+                //Adds output buffer to make it more readable.
+                std::cout << std::endl;
+                break;
+            case 5:
+                listAndModifyCar(inventory);
+                break;
+            case 6:
+                sortCarsFromDealer(inventory);
+                break;
+            case 7:
+                writeDealersCarsToFile(outfile, inventory);
+                break;
+            case 8:
+                std::cout << "Thank you for visiting!\n" << std::endl;
+                break;
+            default:
+                unknownInput();
+                break;
+        }
+
+    } while (userChoice != 0);
+
+    exitProgram();
+}
 

@@ -83,49 +83,19 @@ CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.cpp" -o CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.s
 
-CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o: CMakeFiles/cFundiesPA3Outlines.dir/flags.make
-CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o: ../SystemFunctions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o -c "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.cpp"
-
-CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.cpp" > CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.i
-
-CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/SystemFunctions.cpp" -o CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.s
-
-CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o: CMakeFiles/cFundiesPA3Outlines.dir/flags.make
-CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o: ../Car.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o -c "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.cpp"
-
-CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.cpp" > CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.i
-
-CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Car.cpp" -o CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.s
-
 # Object files for target cFundiesPA3Outlines
 cFundiesPA3Outlines_OBJECTS = \
 "CMakeFiles/cFundiesPA3Outlines.dir/main.cpp.o" \
-"CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.o" \
-"CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o" \
-"CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o"
+"CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.o"
 
 # External object files for target cFundiesPA3Outlines
 cFundiesPA3Outlines_EXTERNAL_OBJECTS =
 
 cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/main.cpp.o
 cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/Dealer.cpp.o
-cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/SystemFunctions.cpp.o
-cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/Car.cpp.o
 cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/build.make
 cFundiesPA3Outlines: CMakeFiles/cFundiesPA3Outlines.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable cFundiesPA3Outlines"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable cFundiesPA3Outlines"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cFundiesPA3Outlines.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

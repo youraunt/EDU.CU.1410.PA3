@@ -74,12 +74,12 @@ preinstall:
 CMakeFiles/cFundiesPA3Outlines.dir/all:
 	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/depend
 	$(MAKE) -f CMakeFiles/cFundiesPA3Outlines.dir/build.make CMakeFiles/cFundiesPA3Outlines.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=1,2,3,4,5 "Built target cFundiesPA3Outlines"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target cFundiesPA3Outlines"
 .PHONY : CMakeFiles/cFundiesPA3Outlines.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cFundiesPA3Outlines.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" 5
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/cFundiesPA3Outlines.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/cmake-build-debug/CMakeFiles" 0
 .PHONY : CMakeFiles/cFundiesPA3Outlines.dir/rule

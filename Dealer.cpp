@@ -8,42 +8,52 @@
 
 #include "Dealer.h"
 #include <iostream>
+#include <utility>
+using namespace std;
 
-Dealer::Dealer()= default;
-
-Dealer::Dealer(std::string _dealerName, unsigned int _dealerNumber, unsigned int _numberOfCars){
-    dealerName = _dealerName;
-    dealerNumber = _dealerNumber;
-    numberOfCars = _numberOfCars;
+Dealer::Dealer() {
+    dealerName = "";
+    dealerNumber = -1;
+    numberOfCars = 0;
 
 }
-
-void Dealer::setDealerName(std::string _dealerName){
-    this->dealerName = _dealerName;
+Dealer::Dealer(string _name, int _number, int _numcars) {
+    dealerName = std::move(_name);
+    dealerNumber = _number;
+    numberOfCars = _numcars;
 }
 
-void Dealer::setDealerNumber(unsigned int _dealerNumber){
-    this->dealerNumber = _dealerNumber;
-}
-void Dealer::setNumberOfCars(unsigned int _numberOfCars) {
-    this->numberOfCars = _numberOfCars;
+void Dealer::setCarArrayPtr(Car* carAr) {
+    int numCars = getNumberOfCars();
+    carArrayPtr = new Car[numCars];
 }
 
-std::string Dealer::getDealerName(){
-    return this->dealerName;
+
+
+Car::Car() {
+    //This is so if the use does want to add a car to dealer but doesnt input anything, it defaults.
+    VIN = -1;
+    make = "";
+    model = "";
+    year = -1;
+    price = -1.0;
 }
 
-unsigned int Dealer::getDealerNumber(){
-    return this->dealerNumber;
-}
-unsigned int Dealer::getNumberOfCars(){
-    return  this->numberOfCars;
+Car::Car(int _v, string _ma, string _mo, int _yr, double _pr) {
+    VIN = _v;
+    make = _ma;
+    model = _mo;
+    year = _yr;
+    price = _pr;
 }
 
-std::ostream& operator << (std::ostream& out, Dealer tempDealer){
-    out << "Dealer Name: " << tempDealer.getDealerName() << std::endl;
+ostream & operator << (ostream &out, const Dealer& dr){
+    out << "Name: " << dr.dealerName << "\nNumber: " << dr.dealerNumber << endl;
     return out;
 }
 
-
+ostream& operator<<(ostream& os, const Car& car){
+    os << "VIN: " << car.VIN << "\nMake: " << car.make << "\nModel: " << car.model << "\nYear: " << car.year << "\nPrice: " << car.price;
+    return os;
+}
 
