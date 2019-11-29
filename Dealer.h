@@ -56,9 +56,9 @@ public:
 class Dealer{
 private:
     string dealerName;
-    int dealerNumber;
+    int dealerNumber{};
     Car* carArrayPtr = nullptr;
-    int numberOfCars;
+    int numberOfCars{};
 
 public:
     //default contstructor
@@ -66,9 +66,9 @@ public:
     //custom contstructor
     Dealer(string, int, int);
     //setters
-    void setDealerName(string n);
+    void setDealerName(string name);
 
-    void setDealerNumber(int num);
+    void setDealerNumber(int number);
     void setCarArrayPtr(Car* carPtr);
 
     void setNumberOfCars(int cars);
@@ -81,6 +81,6 @@ public:
 
     int getNumberOfCars();
     //<< override
-    friend ostream & operator << (ostream &out, const Dealer& dr);
+    friend ostream &operator<<(ostream &out, const Dealer &dealer);
 };
 #endif /// dealer.hpp

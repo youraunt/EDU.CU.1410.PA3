@@ -5,25 +5,24 @@
 //  Created by BK Allen on 11/23/19.
 //  Copyright © 2019 BK Allen. All rights reserved.
 //
+//  CSCI 1410-003
+//  Status: Compiles and runs on cLion
+//  Notes: No error checking in place
+//
 #include "SystemFunctions.h"
 #include <iostream>
 
-
+/// @brief main function compilation begins and ends here
+/// @return implied zero
 int main() {
     int userChoice;
     std::ifstream infile;
     std::ofstream outfile;
-
     std::vector<Dealer> inventory;
-
-
 
     do {
         printMenu();
         std::cin >> userChoice;
-
-        //Adds output buffer to make it more readable.
-        std::cout << std::endl;
 
         switch (userChoice) {
             case 1:
@@ -50,7 +49,7 @@ int main() {
                 writeDealersCarsToFile(outfile, inventory);
                 break;
             case 0:
-                std::cout << "Thank you for visiting!\n" << std::endl;
+                exitProgram();
                 break;
             default:
                 unknownInput();

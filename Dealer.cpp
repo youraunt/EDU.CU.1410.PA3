@@ -11,13 +11,10 @@
 #include <utility>
 using namespace std;
 
-Dealer::Dealer() {
-    dealerName = "";
-    dealerNumber = -1;
-    numberOfCars = 0;
-
-}
-
+/// @brief Dealer constructor
+/// @param _name Name of dealer
+/// @param _number Dealer number identifier
+/// @param _numberOfCars Number of cars the dealer has in inventory
 Dealer::Dealer(string _name, int _number, int _numberOfCars) {
     dealerName = std::move(_name);
     dealerNumber = _number;
@@ -25,11 +22,9 @@ Dealer::Dealer(string _name, int _number, int _numberOfCars) {
 }
 
 
-
-
-
+/// @brief defualt if user enters no data
 Car::Car() {
-    //This is so if the use does want to add a car to dealer but doesnt input anything, it defaults.
+
     VIN = -1;
     make = "";
     model = "";
@@ -37,25 +32,37 @@ Car::Car() {
     price = -1.0;
 }
 
-Car::Car(int _v, string _ma, string _mo, int _yr, double _pr) {
-    VIN = _v;
-    make = _ma;
-    model = _mo;
-    year = _yr;
-    price = _pr;
+/// @brief  Currently unused car constructor
+/// @param _vin Cars Vehicle Identification Number (VIN)
+/// @param _make Cars Make
+/// @param _model Cars Model
+/// @param _year  Cars year
+/// @param _price Cars Pric
+Car::Car(int _vin, string _make, string _model, int _year, double _price) {
+    VIN = std::to_string(_vin);
+    make = std::move(_make);
+    model = std::move(_model);
+    year = _year;
+    price = _price;
 }
 
-ostream & operator << (ostream &out, const Dealer& dr){
-    out << "Name: " << dr.dealerName << "\nNumber: " << dr.dealerNumber << endl;
+/// @brief overloaded operator
+/// @param out ostream
+/// @param dealer Dealer Vector
+/// @return @param out
+ostream &operator<<(ostream &out, const Dealer &dealer) {
+    out << "Name: " << dealer.dealerName << "\nNumber: " << dealer.dealerNumber << endl;
     return out;
 }
 
-void Dealer::setDealerName(string n) {
-    { dealerName = std::move(n); }
+/// @brief Function to set Dealer name
+/// @param name dealers name
+void Dealer::setDealerName(string name) {
+    { dealerName = std::move(name); }
 }
 
-void Dealer::setDealerNumber(int num) {
-    { dealerNumber = num; }
+void Dealer::setDealerNumber(int number) {
+    { dealerNumber = number; }
 }
 
 void Dealer::setCarArrayPtr(Car *carAr) {
@@ -82,6 +89,8 @@ Car *Dealer::getCarArrayPtr() {
 int Dealer::getNumberOfCars() {
     { return numberOfCars; }
 }
+
+Dealer::Dealer() = default;
 
 ostream& operator<<(ostream& os, const Car& car){
     os << "VIN: " << car.VIN << "\nMake: " << car.make << "\nModel: " << car.model << "\nYear: " << car.year << "\nPrice: " << car.price;
