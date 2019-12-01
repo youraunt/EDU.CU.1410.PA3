@@ -5,24 +5,26 @@
 //  Created by BK Allen on 11/23/19.
 //  Copyright © 2019 BK Allen. All rights reserved.
 //
-//  CSCI 1410-003
-//  Status: Compiles and runs on cLion
-//  Notes: No error checking in place
-//
 #include "SystemFunctions.h"
 #include <iostream>
 
-/// @brief main function compilation begins and ends here
-/// @return implied zero
+#define WHAT_IS(x) std::cerr << #x << " is " << x << std::endl;
+
+
 int main() {
     int userChoice;
     std::ifstream infile;
     std::ofstream outfile;
+
     std::vector<Dealer> inventory;
+
 
     do {
         printMenu();
         std::cin >> userChoice;
+
+        //Adds output buffer to make it more readable.
+        std::cout << std::endl;
 
         switch (userChoice) {
             case 1:
@@ -38,6 +40,8 @@ int main() {
                 break;
             case 4:
                 addCarToDealer(inventory);
+                //Adds output buffer to make it more readable.
+                std::cout << std::endl;
                 break;
             case 5:
                 listAndModifyCar(inventory);
@@ -49,7 +53,7 @@ int main() {
                 writeDealersCarsToFile(outfile, inventory);
                 break;
             case 0:
-                exitProgram();
+                std::cout << "Thank you for visiting!\n" << std::endl;
                 break;
             default:
                 unknownInput();

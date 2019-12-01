@@ -1,13 +1,13 @@
 //
-//  Dealer.hpp
+//  Dealer.h
 //  PA3
 //
 //  Created by BK Allen on 11/23/19.
 //  Copyright © 2019 BK Allen. All rights reserved.
 //
 
-#ifndef Dealer_hpp
-#define Dealer_hpp
+#ifndef Dealer_h
+#define Dealer_h
 
 #include <string>
 #include <iostream>
@@ -29,36 +29,36 @@ public:
     //custom constructor
     Car(int, string, string, int, double);
     //setters
-    void setVIN(string _VIN);
+    void setVIN(string _VIN) { VIN = std::move(_VIN); }
 
-    void setMake(string _make);
+    void setMake(string _make) { make = std::move(_make); }
 
-    void setModel(string _model);
+    void setModel(string _model) { model = std::move(_model); }
 
-    void setYear(int _year);
+    void setYear(int _year) { year = _year; }
 
-    void setPrice(double _price);
+    void setPrice(double _price) { price = _price; }
     //getters
-    string getVIN();
+    string getVIN() { return VIN; }
 
-    string getMake();
+    string getMake() { return make; }
 
-    string getModel();
+    string getModel() { return model; }
 
-    int getYear();
+    int getYear() { return year; }
 
-    double getPrice();
+    double getPrice() { return price; }
     //<< override
-    friend ostream& operator<<(ostream& os, const Car& car);
+    friend ostream &operator<<(ostream &out, const Car &car);
 
 };
 
 class Dealer{
 private:
     string dealerName;
-    int dealerNumber{};
+    int dealerNumber;
     Car* carArrayPtr = nullptr;
-    int numberOfCars{};
+    int numberOfCars;
 
 public:
     //default contstructor
@@ -66,21 +66,21 @@ public:
     //custom contstructor
     Dealer(string, int, int);
     //setters
-    void setDealerName(string name);
+    void setDealerName(string n) { dealerName = std::move(n); }
 
-    void setDealerNumber(int number);
+    void setDealerNumber(int num) { dealerNumber = num; }
     void setCarArrayPtr(Car* carPtr);
 
-    void setNumberOfCars(int cars);
+    void setNumberOfCars(int cars) { numberOfCars = cars; }
     //getters
-    string getDealerName();
+    string getDealerName() { return dealerName; }
 
-    int getDealerNumber();
+    int getDealerNumber() { return dealerNumber; }
 
-    Car *getCarArrayPtr();
+    Car *getCarArrayPtr() { return carArrayPtr; }
 
-    int getNumberOfCars();
+    int getNumberOfCars() { return numberOfCars; }
     //<< override
-    friend ostream &operator<<(ostream &out, const Dealer &dealer);
+    friend ostream &operator<<(ostream &out, const Dealer &dr);
 };
 #endif /// dealer.hpp
