@@ -14,42 +14,6 @@
 #include <fstream>
 #include "Dealer.h"
 
-using namespace std;
-
-/*
-bool userInterface() {
-    static const char menu_title[] =
-            "\n"
-            "------------------------------\n"
-            "         Main Menu\n"
-            "------------------------------\n"
-            "\n";
-    std::cout.write(menu_title, sizeof(menu_title) - 1);
-    for (const auto &i : main_menu) {
-        std::cout << i.p_selection_text << "\n";
-    }
-    std::cout << "Enter selection, 0 to quit: ";
-    char choice = 0;
-    std::cin >> choice;
-
-
-    for (const auto &i : main_menu) {
-        if (choice == i.choice) {
-            Menu_Processing_Function_Pointer p_function = i.pProcessingPointer;
-            (p_function)();
-            break;
-        }
-
-    }
-    return true;
-}*/
-
-
-
-
-
-
-
 
 /// @brief Handles unusable input
 void unknownInput() {
@@ -68,7 +32,7 @@ void fileNotFound() {
     exit(EXIT_FAILURE);
 }
 
-bool carsInInventory(vector<Dealer> &inventory
+bool carsInInventory(std::vector<Dealer> &inventory
 ) {
     if (inventory.empty()) {
         cout << "\nThere are no employees in the directory.\n";
@@ -84,14 +48,14 @@ int getMenuChoice(int numChoices) {
 
     // Keep asking until a valid choice is made
     do {
-        cout << "\n> ";
-        cin >> choice;
-        cin.ignore();
+        std::cout << "\n> ";
+        std::cin >> choice;
+        std::cin.ignore();
 
         // Valid choices range from 1 to numChoices
         if (choice < 1 || choice > numChoices) {
-            cout << endl << choice << " is not a valid menu choice."
-                 << "\nPlease make a selection between 1 and " << numChoices << endl;
+            std::cout << std::endl << choice << " is not a valid menu choice."
+                      << "\nPlease make a selection between 1 and " << numChoices << std::endl;
         }
 
     } while (choice < 1 || choice > numChoices);
@@ -107,12 +71,17 @@ static const char menu_title[] =
         "\n";
 
 
-void readFromFile(std::ifstream &infile, vector<Dealer> &inventory) {
+void readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) {
 
-    cout << "Reading...";
-    int dealer_number, dealer_num_cars, car_year;
+    std::cout << "Reading...";
+    int dealer_number;
+    int dealer_num_cars;
+    int car_year;
     double car_price;
-    string dealer_name, car_make, car_model, car_vin;
+    std::string dealer_name;
+    std::string car_make;
+    std::string car_model;
+    std::string car_vin;
 
     infile.open("/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/dealers.txt");
     if (!infile || infile.fail()) { fileNotFound(); }
@@ -122,7 +91,7 @@ void readFromFile(std::ifstream &infile, vector<Dealer> &inventory) {
 
         Dealer dealer_in;
 
-        getline(infile, dealer_name);
+        std::getline(infile, dealer_name);
         //This is a protection against program thinking the blank line at the end of text files is a new dealer.
         if (dealer_name.empty()) {
             break;
@@ -171,47 +140,48 @@ void readFromFile(std::ifstream &infile, vector<Dealer> &inventory) {
     }
 
     infile.close();
-    cout << "Done." << endl;
+    std::cout << "Done." << std::endl;
 }
 
-void displayDealers(vector<Dealer> &inventory
+void displayDealers(std::vector<Dealer> &inventory
 ) {
     for (const auto &i : inventory
             ) {
-        cout << i << endl;
+        std::cout << i << std::endl;
     }
 }
 
-void displayCarsFromDealer(vector<Dealer> &inventory
+void displayCarsFromDealer(std::vector<Dealer> &inventory
 ) {
-    unsigned long user_dealer_input, dealer_index = 0;
-    bool loop_bool = true;
+    unsigned long userDealerInput = 0;
+    unsigned long dealerIndex = 0;
+    bool loopBool = true;
     displayDealers(inventory
     );
-    cout << "From the choices above. Enter the dealer number to see cars: ";
+    std::cout << "From the choices above. Enter the dealer number to see cars: ";
     //Checks user input against all the dealer numbers in the vector and sets "dealer_index" to the dealer found at the index.
-    while (loop_bool) {
+    while (loopBool) {
 
-        cin >> user_dealer_input;
+        std::cin >> userDealerInput;
 
         for (unsigned long i = 0; i < inventory.size(); i++) {
-            if (user_dealer_input == inventory.at(i).getDealerNumber()) {
-                dealer_index = i;
-                loop_bool = false;
+            if (userDealerInput == inventory.at(i).getDealerNumber()) {
+                dealerIndex = i;
+                loopBool = false;
             }
         }
-        if (loop_bool) { cout << "No dealer found with that number. Try again: "; }
+        if (loopBool) { cout << "No dealer found with that number. Try again: "; }
     }
 
-    Car *car_array = inventory.at(dealer_index).getCarArrayPtr();
+    Car *carArray = inventory.at(dealerIndex).getCarArrayPtr();
 
-    cout << "\n" << inventory.at(dealer_index).getDealerName() << "\n" << endl;
-    for (int i = 0; i < inventory.at(dealer_index).getNumberOfCars(); i++) {
-        cout << car_array[i] << "\n" << endl;
+    std::cout << "\n" << inventory.at(dealerIndex).getDealerName() << "\n" << std::endl;
+    for (int i = 0; i < inventory.at(dealerIndex).getNumberOfCars(); i++) {
+        std::cout << carArray[i] << "\n" << std::endl;
     }
 }
 
-void addCarToDealer(vector<Dealer> &inventory) {
+void addCarToDealer(std::vector<Dealer> &inventory) {
 
     unsigned long input;
     unsigned long dealerIndex = 0;
@@ -222,17 +192,14 @@ void addCarToDealer(vector<Dealer> &inventory) {
     unsigned int newYear;
     double new_price;
 
-    displayDealers(inventory
-    );
-    cout << "From the choices above. Enter the dealer number to add a new car: ";
+    displayDealers(inventory);
+    std::cout << "From the choices above. Enter the dealer number to add a new car: ";
     while (loopBool) {
 
-        cin >> input;
+        std::cin >> input;
 
-        for (unsigned long i = 0; i < inventory
-                .size(); i++) {
-            if (input == inventory
-                    .at(i).getDealerNumber()) {
+        for (unsigned long i = 0; i < inventory.size(); i++) {
+            if (input == inventory.at(i).getDealerNumber()) {
                 dealerIndex = i;
                 loopBool = false;
             }
@@ -240,111 +207,110 @@ void addCarToDealer(vector<Dealer> &inventory) {
         if (loopBool) { cout << "No dealer found with that number. Try again: "; }
     }
 
-    Dealer curr_dealer = inventory
-            .at(dealerIndex);
+    Dealer currentDealer = inventory.at(dealerIndex);
 
-    cin.ignore();
-    cout << "Enter new car VIN: ";
-    getline(cin, newVin);
+    std::cin.ignore();
+    std::cout << "Enter new car VIN: ";
+    std::getline(cin, newVin);
 
-    cout << "Enter new car make: ";
-    getline(cin, newMake);
+    std::cout << "Enter new car make: ";
+    std::getline(cin, newMake);
 
-    cout << "Enter new car model: ";
-    getline(cin, newModel);
+    std::cout << "Enter new car model: ";
+    std::getline(cin, newModel);
 
-    cout << "Enter new car year: ";
-    cin >> newYear;
+    std::cout << "Enter new car year: ";
+    std::cin >> newYear;
 
-    cout << "Enter new car price: ";
-    cin >> new_price;
+    std::cout << "Enter new car price: ";
+    std::cin >> new_price;
 
-    cout << "\nAdding...";
+    std::cout << "\nAdding...";
 
-    Car *car_array = curr_dealer.getCarArrayPtr();
-    Car temp_cars[curr_dealer.getNumberOfCars()];
+    Car *carArray = currentDealer.getCarArrayPtr();
+    Car tempCars[currentDealer.getNumberOfCars()];
 
-    //Populates the temporary array of cars with the existing cars in car_array. This is done so the memory can be freed up.
-    for (int i = 0; i < curr_dealer.getNumberOfCars(); i++) {
-        temp_cars[i] = car_array[i];
+    //Populates the temporary array of cars with the existing cars in carArray. This is done so the memory can be freed up.
+    for (int i = 0; i < currentDealer.getNumberOfCars(); i++) {
+        tempCars[i] = carArray[i];
     }
 
 
     //Adds one to the number of cars in the dealers inventory in order to make room for new user car
-    int temp_num_cars = curr_dealer.getNumberOfCars();
-    curr_dealer.setNumberOfCars(temp_num_cars + 1);
+    int tempNumCars = currentDealer.getNumberOfCars();
+    currentDealer.setNumberOfCars(tempNumCars + 1);
 
     //Creates new Car object pointing to the array created in setCarArrayPtr.
-    Car *new_car_arr = nullptr;
-    curr_dealer.setCarArrayPtr(new_car_arr);
+    Car *newCarArr = nullptr;
+    currentDealer.setCarArrayPtr(newCarArr);
 
-    new_car_arr = curr_dealer.getCarArrayPtr();
+    newCarArr = currentDealer.getCarArrayPtr();
 
-    curr_dealer.getNumberOfCars();
+    currentDealer.getNumberOfCars();
 
     // new_car_arr = car_array;
-    for (int i = 0; i < curr_dealer.getNumberOfCars() - 1; i++) {
-        new_car_arr[i] = temp_cars[i];
+    for (int i = 0; i < currentDealer.getNumberOfCars() - 1; i++) {
+        newCarArr[i] = tempCars[i];
     }
 
-    new_car_arr[curr_dealer.getNumberOfCars() - 1].setVIN(newVin);
-    new_car_arr[curr_dealer.getNumberOfCars() - 1].setMake(newMake);
-    new_car_arr[curr_dealer.getNumberOfCars() - 1].setModel(newModel);
-    new_car_arr[curr_dealer.getNumberOfCars() - 1].setYear(newYear);
-    new_car_arr[curr_dealer.getNumberOfCars() - 1].setPrice(new_price);
+    newCarArr[currentDealer.getNumberOfCars() - 1].setVIN(newVin);
+    newCarArr[currentDealer.getNumberOfCars() - 1].setMake(newMake);
+    newCarArr[currentDealer.getNumberOfCars() - 1].setModel(newModel);
+    newCarArr[currentDealer.getNumberOfCars() - 1].setYear(newYear);
+    newCarArr[currentDealer.getNumberOfCars() - 1].setPrice(new_price);
 
-    inventory
-            .at(dealerIndex) = curr_dealer;
+    inventory.at(dealerIndex) = currentDealer;
 
     cout << "Done." << endl;
 }
 
 
-void listAndModifyCar(vector<Dealer> &inventory
-) {
+void listAndModifyCar(std::vector<Dealer> &inventory) {
 
-    if (carsInInventory(inventory
-    )) {
+    if (carsInInventory(inventory)) {
         int choice;
         int choice1;
         int numberOfCars = 0;
 
-        unsigned long user_dealer_input, dealer_index = 0;
+        unsigned long userDealerInput = 0;
+        unsigned long dealerIndex = 0;
 
-        bool loop_bool = true;
+        bool loopBool = true;
         displayDealers(inventory
         );
         cout << "From the choices above. Enter the dealer number to see cars: ";
-        //Checks user input against all the dealer numbers in the vector and sets "dealer_index" to the dealer found at the index.
-        while (loop_bool) {
+        //Checks user input against all the dealer numbers in the vector and sets "dealerIndex" to the dealer found at the index.
+        while (loopBool) {
 
-            cin >> user_dealer_input;
+            std::cin >> userDealerInput;
 
             for (unsigned long i = 0; i < inventory
                     .size(); i++) {
-                if (user_dealer_input == inventory
+                if (userDealerInput == inventory
                         .at(i).getDealerNumber()) {
-                    dealer_index = i;
-                    loop_bool = false;
+                    dealerIndex = i;
+                    loopBool = false;
                 }
             }
-            if (loop_bool) { cout << "No dealer found with that number. Try again: "; }
+            if (loopBool) { cout << "No dealer found with that number. Try again: "; }
         }
 
-        Car *car_array = inventory
-                .at(dealer_index).getCarArrayPtr();
+        Car *carArray = inventory
+                .at(dealerIndex).getCarArrayPtr();
 
         cout << "\n" << inventory
-                .at(dealer_index).getDealerName() << "\n" << endl;
+                .at(dealerIndex).getDealerName() << "\n" << endl;
         for (int i = 0; i < inventory
-                .at(dealer_index).getNumberOfCars(); i++) {
+                .at(dealerIndex).getNumberOfCars(); i++) {
             cout << "CAR # " << i + 1 << std::endl
-                 << car_array[i] << "\n" << endl;
+                 << carArray[i] << "\n" << endl;
             numberOfCars++;
         }
         std::cout << "\nPlease enter the number of the car you would like to modify:" << std::endl;
         std::cin >> choice;
-        std::cout << "You picked:  " << car_array[choice - 1].getModel() << std::endl
+        std::cout << "You picked:  " << carArray[choice - 1].getYear() << " "
+                  << carArray[choice - 1].getMake() << " "
+                  << carArray[choice - 1].getModel() << std::endl
                   << "Which aspect would you like to update? " << std::endl
                   << "\t1.\tVIN" << std::endl
                   << "\t2.\tMAKE" << std::endl
@@ -353,16 +319,50 @@ void listAndModifyCar(vector<Dealer> &inventory
                   << "\t5.\tPRICE" << std::endl;
         std::cin >> choice1;
         switch (choice1) {
-            case 1:
-
+            case 1: {
+                std::string newVIN;
+                std::cout << "Please enter new VIN: " << std::endl
+                          << "> ";
+                std::cin.ignore();
+                std::getline(std::cin, newVIN);
+                carArray[choice - 1].setVIN(newVIN);
                 break;
-            case 2:
+            }
+            case 2: {
+                std::string newMake;
+                std::cout << "Please enter new make: " << std::endl
+                          << "> ";
+                std::cin.ignore();
+                std::getline(std::cin, newMake);
+                carArray[choice - 1].setMake(newMake);
+            }
                 break;
-            case 3:
+            case 3: {
+                std::string newModel;
+                std::cout << "Please enter new model: " << std::endl
+                          << "> ";
+                std::cin.ignore();
+                std::getline(std::cin, newModel);
+                carArray[choice - 1].setModel(newModel);
+            }
                 break;
-            case 4:
+            case 4: {
+                int newYear;
+                std::cout << "Please enter new year: " << std::endl
+                          << "> ";
+                std::cin.ignore();
+                std::cin >> newYear;
+                carArray[choice - 1].setYear(newYear);
+            }
                 break;
-            case 5:
+            case 5: {
+                double newPrice;
+                std::cout << "Please enter new price: " << std::endl
+                          << "> ";
+                std::cin.ignore();
+                std::cin >> newPrice;
+                carArray[choice - 1].setPrice(newPrice);
+            }
                 break;
             default:
                 unknownInput();
@@ -375,51 +375,51 @@ void listAndModifyCar(vector<Dealer> &inventory
 
 void sortCarsFromDealer(vector<Dealer> &inventory
 ) {
-    unsigned long user_dealer_input, dealer_index = 0;
-    bool loop_bool = true;
+    unsigned long userDealerInput = 0;
+    unsigned long dealerIndex = 0;
+    bool loopBool = true;
 
     displayDealers(inventory
     );
     cout << "From the choices above. Enter the dealer number to add a new car: ";
-    while (loop_bool) {
+    while (loopBool) {
 
-        cin >> user_dealer_input;
+        cin >> userDealerInput;
 
         for (unsigned long i = 0; i < inventory
                 .size(); i++) {
-            if (user_dealer_input == inventory.at(i).getDealerNumber()) {
-                dealer_index = i;
-                loop_bool = false;
+            if (userDealerInput == inventory.at(i).getDealerNumber()) {
+                dealerIndex = i;
+                loopBool = false;
             }
         }
-        if (loop_bool) { cout << "No dealer found with that number. Try again: "; }
+        if (loopBool) { cout << "No dealer found with that number. Try again: "; }
     }
     //Adds output buffer to make it more readable.
     cout << endl;
 
-    Car *car_array = inventory.at(dealer_index).getCarArrayPtr();
+    Car *carArray = inventory.at(dealerIndex).getCarArrayPtr();
 
     Car swap;
-    int n = inventory.at(dealer_index).getNumberOfCars();
+    int n = inventory.at(dealerIndex).getNumberOfCars();
 
     //Using bubble sort
     for (unsigned int i = 0; i < n - 1; i++) {
         for (unsigned int j = 0; j < n - i - 1; j++) {
-            if (car_array[j].getVIN() > car_array[j + 1].getVIN()) {
-                swap = car_array[j];
-                car_array[j] = car_array[j + 1];
-                car_array[j + 1] = swap;
+            if (carArray[j].getVIN() > carArray[j + 1].getVIN()) {
+                swap = carArray[j];
+                carArray[j] = carArray[j + 1];
+                carArray[j + 1] = swap;
             }
         }
     }
 
-    for (int k = 0; k < inventory.at(dealer_index).getNumberOfCars(); k++) {
-        cout << car_array[k] << "\n" << endl;
+    for (int k = 0; k < inventory.at(dealerIndex).getNumberOfCars(); k++) {
+        cout << carArray[k] << "\n" << endl;
     }
 }
 
-void writeDealersCarsToFile(ofstream &outfile, vector<Dealer> &inventory
-) {
+void writeDealersCarsToFile(ofstream &outfile, vector<Dealer> &inventory) {
     cout << "Writing to outfile...";
     outfile.open("../outfile.txt");
 
