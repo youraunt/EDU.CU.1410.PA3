@@ -9,7 +9,7 @@
 #include "Dealer.h"
 #include <iostream>
 #include <utility>
-using namespace std;
+
 
 Dealer::Dealer() {
     dealerName = "";
@@ -18,7 +18,7 @@ Dealer::Dealer() {
 
 }
 
-Dealer::Dealer(string _name, int _number, int _numcars) {
+Dealer::Dealer(std::string _name, int _number, int _numcars) {
     dealerName = std::move(_name);
     dealerNumber = _number;
     numberOfCars = _numcars;
@@ -48,12 +48,12 @@ Car::Car() {
     price = _pr;
 }*/
 
-ostream &operator<<(ostream &out, const Dealer &dealer) {
-    out << "Name: " << dealer.dealerName << "\nNumber: " << dealer.dealerNumber << endl;
+std::ostream &operator<<(std::ostream &out, const Dealer &dealer) {
+    out << "Name: " << dealer.dealerName << "\nNumber: " << dealer.dealerNumber << std::endl;
     return out;
 }
 
-ostream& operator<<(ostream& basicOstream, const Car& car){
+std::ostream& operator<<(std::ostream& basicOstream, const Car& car){
     basicOstream << "VIN: " << car.VIN << "\nMake: " << car.make << "\nModel: " << car.model << "\nYear: " << car.year << "\nPrice: " << car.price;
     return basicOstream;
 }
