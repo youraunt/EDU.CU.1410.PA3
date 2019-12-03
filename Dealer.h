@@ -50,7 +50,7 @@ public:
     double getPrice() { return price; }
     //<< override
     friend std::ostream &operator<<(std::ostream &out, const Car &car);
-
+    ~Car();
 };
 
 class Dealer{
@@ -82,5 +82,6 @@ public:
     int getNumberOfCars() { return numberOfCars; }
     //<< override
     friend std::ostream &operator<<(std::ostream &out, const Dealer &dr);
+    ~Dealer();
 };
 #endif /// dealer.hpp

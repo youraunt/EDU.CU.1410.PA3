@@ -53,8 +53,12 @@ std::ostream &operator<<(std::ostream &out, const Dealer &dealer) {
     return out;
 }
 
+Dealer::~Dealer() = default;
+
 std::ostream& operator<<(std::ostream& basicOstream, const Car& car){
     basicOstream << "VIN: " << car.VIN << "\nMake: " << car.make << "\nModel: " << car.model << "\nYear: " << car.year << "\nPrice: " << car.price;
     return basicOstream;
 }
+
+Car::~Car() = default;
 
