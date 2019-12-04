@@ -26,8 +26,6 @@ private:
 public:
     //default constructor
     Car();
-    //custom constructor
-//    Car(int, std::string, std::string, int, double);
     //setters
     void setVIN(std::string _VIN) { VIN = std::move(_VIN); }
 
@@ -48,8 +46,9 @@ public:
     int getYear() { return year; }
 
     double getPrice() { return price; }
-    //<< override
+    /// overloaded operator
     friend std::ostream &operator<<(std::ostream &out, const Car &car);
+    /// @brief Destructor
     ~Car();
 };
 
@@ -67,21 +66,17 @@ public:
     Dealer(std::string, int, int);
     //setters
     void setDealerName(std::string n) { dealerName = std::move(n); }
-
     void setDealerNumber(int num) { dealerNumber = num; }
     void setCarArrayPtr(Car* carPtr);
-
     void setNumberOfCars(int cars) { numberOfCars = cars; }
     //getters
     std::string getDealerName() { return dealerName; }
-
     int getDealerNumber() { return dealerNumber; }
-
     Car *getCarArrayPtr() { return carArrayPtr; }
-
     int getNumberOfCars() { return numberOfCars; }
     //<< override
     friend std::ostream &operator<<(std::ostream &out, const Dealer &dr);
+    /// @brief Destructor
     ~Dealer();
 };
-#endif /// dealer.hpp
+#endif /// dealer.h

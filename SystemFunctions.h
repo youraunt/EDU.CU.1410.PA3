@@ -6,8 +6,8 @@
 //  Copyright © 2019 BK Allen. All rights reserved.
 //
 
-#ifndef SystemFunctions_hpp
-#define SystemFunctions_hpp
+#ifndef SystemFunctions_h
+#define SystemFunctions_h
 
 #include <iostream>
 #include <vector>
@@ -16,24 +16,24 @@
 
 
 /// @brief Handles unusable input
-void unknownInput() {
+void inline unknownInput() {
     std::cout << "Error?! Please, try again: " << std::endl;
     std::cout << " >";
 }
 
 /// @brief Exits program successfully with message
-std::string exitProgram() {
+std::string inline exitProgram() {
     std::cout << "Exiting program!" << std::endl;
     exit(EXIT_SUCCESS);
 }
 
 /// @brief Displays error and exits program
-void fileNotFound() {
+[[noreturn]]void inline fileNotFound() {
     std::cerr << "File not found! \nExiting Program!" << std::endl;
     exit(EXIT_FAILURE);
 }
 
-bool carsInInventory(std::vector<Dealer> &inventory
+bool inline carsInInventory(std::vector<Dealer> &inventory
 ) {
     if (inventory.empty()) {
         std::cout << "\nThere are no cars in the inventory.\n";
@@ -44,7 +44,7 @@ bool carsInInventory(std::vector<Dealer> &inventory
     return !inventory.empty();
 }
 
-int getMenuChoice(int numChoices) {
+int inline getMenuChoice(int numChoices, bool hasSubmenu = false) {
     int choice; // Holds user's choice
 
     // Keep asking until a valid choice is made
@@ -54,13 +54,13 @@ int getMenuChoice(int numChoices) {
         std::cin.ignore();
 
         // Valid choices range from 1 to numChoices
-        if (choice < 1 || choice > numChoices) {
+        if (choice < 0 || choice > numChoices) {
             std::cout << std::endl << choice << " is not a valid menu choice."
                       << "\nPlease make a selection between 1 and " << numChoices << std::endl;
             std::cout << " >";
         }
 
-    } while (choice < 1 || choice > numChoices);
+    } while (choice < 0 || choice > numChoices);
 
     return choice;
 }
@@ -72,8 +72,11 @@ static const char menu_title[] =
         "------------------------------\n"
         "\n";
 
-
-void readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) {
+/// @brief Function to read in from file
+/// @param infile file stream
+/// @param inventory Dealer Vector to read into
+///@TODO integrate BOOST serialization
+void inline readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) {
 
     std::cout << "Reading...";
     int dealer_number;
@@ -137,30 +140,30 @@ void readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) {
         }
 
         //Adds the new dealer, "dealer_in", to the overall vector of "Dealers".
-        inventory
-                .push_back(dealer_in);
+        inventory.push_back(dealer_in);
     }
 
     infile.close();
     std::cout << "Done." << std::endl;
 }
 
-void displayDealers(std::vector<Dealer> &inventory
-) {
+/// @brief Function to display dealer by name, number and # of cars in inventory
+/// @param inventory Vector to hold dealers
+void inline displayDealers(std::vector<Dealer> &inventory) {
     for (const auto &i : inventory
             ) {
         std::cout << i << std::endl;
     }
 }
 
-void displayCarsFromDealer(std::vector<Dealer> &inventory
-) {
+/// @brief Function to list dealers and then display their inventory based on user input
+/// @param inventory Vector to hold dealers
+void inline displayCarsFromDealer(std::vector<Dealer> &inventory) {
     unsigned long userDealerInput = 0;
     unsigned long dealerIndex = 0;
     bool loopBool = true;
-    displayDealers(inventory
-    );
-    std::cout << "From the choices above. Enter the dealer number to see cars: "<< std::endl;
+    displayDealers(inventory);
+    std::cout << "From the choices above. Enter the dealer number to see cars: " << std::endl;
     std::cout << " >";
     //Checks user input against all the dealer numbers in the vector and sets "dealer_index" to the dealer found at the index.
     while (loopBool) {
@@ -173,7 +176,10 @@ void displayCarsFromDealer(std::vector<Dealer> &inventory
                 loopBool = false;
             }
         }
-        if (loopBool) { std::cout << "No dealer found with that number. Try again: "<< std::endl; std::cout << " >"; }
+        if (loopBool) {
+            std::cout << "No dealer found with that number. Try again: " << std::endl;
+            std::cout << " >";
+        }
     }
 
     Car *carArray = inventory.at(dealerIndex).getCarArrayPtr();
@@ -184,7 +190,11 @@ void displayCarsFromDealer(std::vector<Dealer> &inventory
     }
 }
 
-void addCarToDealer(std::vector<Dealer> &inventory) {
+/// @brief Function displays dealers, then their inventory
+/// then allows user to add a new car
+/// @param inventory Vector to hold dealers
+///@TODO implement loop to add multiple cars and/or option at once
+void inline addCarToDealer(std::vector<Dealer> &inventory) {
 
     unsigned long input;
     unsigned long dealerIndex = 0;
@@ -208,7 +218,10 @@ void addCarToDealer(std::vector<Dealer> &inventory) {
                 loopBool = false;
             }
         }
-        if (loopBool) { std::cout << "No dealer found with that number. Try again: " << std::endl; std::cout << " >"; }
+        if (loopBool) {
+            std::cout << "No dealer found with that number. Try again: " << std::endl;
+            std::cout << " >";
+        }
     }
 
     Dealer currentDealer = inventory.at(dealerIndex);
@@ -218,19 +231,19 @@ void addCarToDealer(std::vector<Dealer> &inventory) {
     std::cout << " >";
     std::getline(std::cin, newVin);
 
-    std::cout << "Enter new car make: "<< std::endl;
+    std::cout << "Enter new car make: " << std::endl;
     std::cout << " >";
     std::getline(std::cin, newMake);
 
-    std::cout << "Enter new car model: "<< std::endl;
+    std::cout << "Enter new car model: " << std::endl;
     std::cout << " >";
     std::getline(std::cin, newModel);
 
-    std::cout << "Enter new car year: "<< std::endl;
+    std::cout << "Enter new car year: " << std::endl;
     std::cout << " >";
     std::cin >> newYear;
 
-    std::cout << "Enter new car price: "<< std::endl;
+    std::cout << "Enter new car price: " << std::endl;
     std::cout << " >";
     std::cin >> new_price;
 
@@ -273,11 +286,14 @@ void addCarToDealer(std::vector<Dealer> &inventory) {
     std::cout << "Done." << std::endl;
 }
 
-
-void listAndModifyCar(std::vector<Dealer> &inventory) {
+/// @brief Function displays dealers, then their inventory
+/// then allows user to modify any aspect of the car selected
+/// @param inventory Vector to hold dealers
+///@TODO implement loop to modify multiple cars and/or option at once
+void inline listAndModifyCar(std::vector<Dealer> &inventory) {
 
     if (carsInInventory(inventory)) {
-        int choice;
+        int choice = -1;
         int choice1;
         int numberOfCars = 0;
 
@@ -285,13 +301,11 @@ void listAndModifyCar(std::vector<Dealer> &inventory) {
         unsigned long dealerIndex = 0;
 
         bool loopBool = true;
-        displayDealers(inventory
-        );
+        displayDealers(inventory);
         std::cout << "From the choices above. Enter the dealer number to see cars: " << std::endl;
         std::cout << " >";
         //Checks user input against all the dealer numbers in the vector and sets "dealerIndex" to the dealer found at the index.
         while (loopBool) {
-
             std::cin >> userDealerInput;
 
             for (unsigned long i = 0; i < inventory
@@ -302,7 +316,9 @@ void listAndModifyCar(std::vector<Dealer> &inventory) {
                     loopBool = false;
                 }
             }
-            if (loopBool) { std::cout << "No dealer found with that number. Try again: "<< std::endl; std::cout << " >";
+            if (loopBool) {
+                std::cout << "No dealer found with that number. Try again: " << std::endl;
+                std::cout << " >";
             }
         }
 
@@ -314,11 +330,11 @@ void listAndModifyCar(std::vector<Dealer> &inventory) {
         for (int i = 0; i < inventory
                 .at(dealerIndex).getNumberOfCars(); i++) {
             std::cout << "CAR # " << i + 1 << std::endl
-                 << carArray[i] << "\n" << std::endl;
+                      << carArray[i] << "\n" << std::endl;
             numberOfCars++;
         }
         std::cout << "\nPlease enter the number of the car you would like to modify:" << std::endl;
-        std::cout << " >";
+//        getMenuChoice(choice);
         std::cin >> choice;
         std::cout << "You picked:  " << carArray[choice - 1].getYear() << " "
                   << carArray[choice - 1].getMake() << " "
@@ -329,6 +345,7 @@ void listAndModifyCar(std::vector<Dealer> &inventory) {
                   << "\t3.\tMODEL" << std::endl
                   << "\t4.\tYEAR" << std::endl
                   << "\t5.\tPRICE" << std::endl;
+//        getMenuChoice(choice1);
         std::cin >> choice1;
         switch (choice1) {
             case 1: {
@@ -385,8 +402,9 @@ void listAndModifyCar(std::vector<Dealer> &inventory) {
     }
 }
 
-void sortCarsFromDealer(std::vector<Dealer> &inventory
-) {
+/// @brief Function bubble sorts cars vin
+/// @param inventory Vector to hold dealers
+void inline sortCarsFromDealer(std::vector<Dealer> &inventory) {
     unsigned long userDealerInput = 0;
     unsigned long dealerIndex = 0;
     bool loopBool = true;
@@ -407,7 +425,10 @@ void sortCarsFromDealer(std::vector<Dealer> &inventory
                 loopBool = false;
             }
         }
-        if (loopBool) { std::cout << "No dealer found with that number. Try again: "<< std::endl;std::cout << " >";}
+        if (loopBool) {
+            std::cout << "No dealer found with that number. Try again: " << std::endl;
+            std::cout << " >";
+        }
     }
     //Adds output buffer to make it more readable.
     std::cout << std::endl;
@@ -433,7 +454,11 @@ void sortCarsFromDealer(std::vector<Dealer> &inventory
     }
 }
 
-void writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &inventory) {
+/// @brief Function to export data to file
+/// @param outfile
+/// @param inventory Vector to hold dealers
+///@TODO integrate BOOST serialization
+void inline writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &inventory) {
     std::cout << "Writing to outfile...";
     outfile.open("../outfile.txt");
 
@@ -445,15 +470,15 @@ void writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &invento
         //Sets carOut pointer to the Car array inside of the current Dealer.
         carOut = i.getCarArrayPtr();
 
-        outfile << i.getDealerName() << std::endl;
-        outfile << i.getDealerNumber() << std::endl;
-        outfile << i.getNumberOfCars() << std::endl;
+        outfile << i.getDealerName() << std::endl
+                << i.getDealerNumber() << std::endl
+                << i.getNumberOfCars() << std::endl;
         for (int j = 0; j < i.getNumberOfCars(); j++) {
-            outfile << carOut[j].getVIN() << std::endl;
-            outfile << carOut[j].getMake() << std::endl;
-            outfile << carOut[j].getModel() << std::endl;
-            outfile << carOut[j].getYear() << std::endl;
-            outfile << carOut[j].getPrice() << std::endl;
+            outfile << carOut[j].getVIN() << std::endl
+                    << carOut[j].getMake() << std::endl
+                    << carOut[j].getModel() << std::endl
+                    << carOut[j].getYear() << std::endl
+                    << carOut[j].getPrice() << std::endl;
         }
 
     }
@@ -461,19 +486,21 @@ void writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &invento
     std::cout << "Done." << std::endl;
 }
 
-bool printMenu() {
-    std::cout << menu_title;
-    std::cout << "1.\tRead Dealers and Cars from file." << std::endl;
-    std::cout << "2.\tDisplay Dealers." << std::endl;
-    std::cout << "3.\tChoose a Dealer Number, Display Cars." << std::endl;
-    std::cout << "4.\tChoose a Dealer Number, Add Car." << std::endl;
-    std::cout << "5.\tChoose a Dealer Number, List Cars and Modify a Car" << std::endl;
-    std::cout << "6.\tChoose a Dealer, Sort cars by VIN." << std::endl;
-    std::cout << "7.\tWrite Dealers and Cars to file." << std::endl;
-    std::cout << "0.\tExit" << std::endl;
-    std::cout << "Please enter a number corresponding to the menu: ";
-    std::cout << " >";
+/// @brief Function for user facing menu
+/// @return true unless specified false by user
+bool inline printMenu() {
+    std::cout << menu_title << std::endl
+              << "1.\tRead Dealers and Cars from file." << std::endl
+              << "2.\tDisplay Dealers." << std::endl
+              << "3.\tChoose a Dealer Number, Display Cars." << std::endl
+              << "4.\tChoose a Dealer Number, Add Car." << std::endl
+              << "5.\tChoose a Dealer Number, List Cars and Modify a Car" << std::endl
+              << "6.\tChoose a Dealer, Sort cars by VIN." << std::endl
+              << "7.\tWrite Dealers and Cars to file." << std::endl
+              << "0.\tExit" << std::endl
+              << "Please enter a number corresponding to the menu: ";
+//    std::cout << " >";
     return true;
 }
 
-#endif /* SystemFunctions_hpp */
+#endif /* SystemFunctions_h */

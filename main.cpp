@@ -12,24 +12,23 @@
 
 
 int main() {
+
     int userChoice;
     std::ifstream infile;
     std::ofstream outfile;
-
     std::vector<Dealer> inventory;
-
 
     do {
         printMenu();
-        std::cin >> userChoice;
-
-        //Adds output buffer to make it more readable.
+       userChoice = getMenuChoice(7);
+       // std::cin >> userChoice;
+        //for readability
         std::cout << std::endl;
 
         switch (userChoice) {
             case 1:
                 readFromFile(infile, inventory);
-                //Adds output buffer to make it more readable.
+                //for readability
                 std::cout << std::endl;
                 break;
             case 2:
@@ -40,7 +39,7 @@ int main() {
                 break;
             case 4:
                 addCarToDealer(inventory);
-                //Adds output buffer to make it more readable.
+                //for readability
                 std::cout << std::endl;
                 break;
             case 5:
