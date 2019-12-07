@@ -14,8 +14,7 @@
 #include <utility>
 
 
-
-class Car{
+class Car {
 private:
     std::string VIN;
     std::string make;
@@ -24,59 +23,62 @@ private:
     double price;
 
 public:
-    //default constructor
+    /// @brief Default constructor
     Car();
-    //setters
-    void setVIN(std::string _VIN) { VIN = std::move(_VIN); }
-
-    void setMake(std::string _make) { make = std::move(_make); }
-
-    void setModel(std::string _model) { model = std::move(_model); }
-
-    void setYear(int _year) { year = _year; }
-
-    void setPrice(double _price) { price = _price; }
-    //getters
-    std::string getVIN() { return VIN; }
-
-    std::string getMake() { return make; }
-
-    std::string getModel() { return model; }
-
-    int getYear() { return year; }
-
-    double getPrice() { return price; }
-    /// overloaded operator
+/// @brief Getters and setters
+    inline void setVIN(std::string _VIN) { VIN = std::move(_VIN); }
+    inline void setMake(std::string _make) { make = std::move(_make); }
+    inline void setModel(std::string _model) { model = std::move(_model); }
+    inline void setYear(int _year) { year = _year; }
+    inline void setPrice(double _price) { price = _price; }
+    inline std::string getVIN() { return VIN; }
+    inline std::string getMake() { return make; }
+    inline std::string getModel() { return model; }
+    inline int getYear() { return year; }
+    inline double getPrice() { return price; }
+    /// @brief Overloaded operator
+    /// @param out
+    /// @param car
+    /// @return
     friend std::ostream &operator<<(std::ostream &out, const Car &car);
-    /// @brief Destructor
+
+    /// @brief  Default destructor
     ~Car();
 };
 
-class Dealer{
+class Dealer {
 private:
     std::string dealerName;
     int dealerNumber;
-    Car* carArrayPtr = nullptr;
+    Car *carArrayPtr = nullptr;
     int numberOfCars;
 
 public:
-    //default contstructor
+    /// @brief Default constructor
     Dealer();
-    //custom contstructor
+
     Dealer(std::string, int, int);
-    //setters
-    void setDealerName(std::string n) { dealerName = std::move(n); }
-    void setDealerNumber(int num) { dealerNumber = num; }
-    void setCarArrayPtr(Car* carPtr);
-    void setNumberOfCars(int cars) { numberOfCars = cars; }
-    //getters
-    std::string getDealerName() { return dealerName; }
-    int getDealerNumber() { return dealerNumber; }
+
+    inline void setDealerName(std::string n) { dealerName = std::move(n); }
+
+    inline void setDealerNumber(int num) { dealerNumber = num; }
+
+    void setCarArrayPtr(Car *);
+
+    inline void setNumberOfCars(int cars) { numberOfCars = cars; }
+
+    inline std::string getDealerName() { return dealerName; }
+
+    inline int getDealerNumber() { return dealerNumber; }
+
     Car *getCarArrayPtr() { return carArrayPtr; }
-    int getNumberOfCars() { return numberOfCars; }
-    //<< override
+
+    inline int getNumberOfCars() { return numberOfCars; }
+
     friend std::ostream &operator<<(std::ostream &out, const Dealer &dr);
-    /// @brief Destructor
+
+    /// @brief Default destructor
     ~Dealer();
 };
+
 #endif /// dealer.h

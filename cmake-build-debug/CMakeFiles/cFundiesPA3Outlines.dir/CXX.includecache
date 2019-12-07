@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.cpp
+Dealer.h
+/Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
+iostream
+-
+utility
+-
+
 /Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
 string
 -
@@ -21,8 +29,12 @@ vector
 -
 fstream
 -
+zconf.h
+-
 Dealer.h
 /Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/Dealer.h
+exception
+-
 
 /Users/bkallen/Desktop/CU Fall 2019/cFundiesPA3Outlines/main.cpp
 SystemFunctions.h
