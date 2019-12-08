@@ -71,6 +71,7 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const Dealer &dr);
     /// @brief Default destructor
     ~Dealer();
+
 };
 
 #endif /// dealer.h
