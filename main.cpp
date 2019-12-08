@@ -62,7 +62,7 @@ try {
                 std::cout << std::endl;
                 break;
             case 6:
-                sortCarsFromDealer(inventory);
+                sortCars(inventory);
                 //for readability
                 std::cout << std::endl;
                 break;
@@ -79,13 +79,13 @@ try {
                 //for readability
                 std::cout << std::endl;
                 break;
-        }
+        }///#switch
 
     } while (userChoice != 0);
 
     exitProgram();
 }catch (const std::exception&){
     unknownInput();
-}
-}
+}///#catch
+}///#main
 

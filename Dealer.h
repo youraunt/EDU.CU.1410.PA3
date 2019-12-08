@@ -41,7 +41,6 @@ public:
     /// @param car
     /// @return
     friend std::ostream &operator<<(std::ostream &out, const Car &car);
-
     /// @brief  Default destructor
     ~Car();
 };
@@ -56,27 +55,20 @@ private:
 public:
     /// @brief Default constructor
     Dealer();
-
     Dealer(std::string, int, int);
-
-    inline void setDealerName(std::string n) { dealerName = std::move(n); }
-
-    inline void setDealerNumber(int num) { dealerNumber = num; }
-
+    inline void setDealerName(std::string name) { dealerName = std::move(name); }
+    inline void setDealerNumber(int number) { dealerNumber = number; }
     void setCarArrayPtr(Car *);
-
     inline void setNumberOfCars(int cars) { numberOfCars = cars; }
-
     inline std::string getDealerName() { return dealerName; }
-
     inline int getDealerNumber() { return dealerNumber; }
-
     Car *getCarArrayPtr() { return carArrayPtr; }
-
     inline int getNumberOfCars() { return numberOfCars; }
-
+    /// @brief Overloaded  operator "<<"
+    /// @param out
+    /// @param dr
+    /// @return
     friend std::ostream &operator<<(std::ostream &out, const Dealer &dr);
-
     /// @brief Default destructor
     ~Dealer();
 };

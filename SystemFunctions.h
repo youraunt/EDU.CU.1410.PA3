@@ -1,5 +1,6 @@
 //
 //  SystemFunctions.h
+//
 //  PA3
 //
 //  Created by BK Allen on 11/23/19.
@@ -29,7 +30,6 @@ static const char MENU_TITLE[] =
 /// @return true unless specified false by user
 inline bool printMenu() {
     std::cout << MENU_TITLE
-
               << "\x1b[33m1.\tRead Dealers and Cars from file." << std::endl
               << "2.\tDisplay Dealers." << std::endl
               << "3.\tChoose a Dealer Number, Display Cars." << std::endl
@@ -38,7 +38,7 @@ inline bool printMenu() {
               << "6.\tChoose a Dealer, Sort cars by VIN." << std::endl
               << "7.\tWrite Dealers and Cars to file." << std::endl
               << "0.\tExit" << std::endl
-              << "Please enter a number corresponding to the menu: \x1b[0m";
+              << "Please enter a number corresponding to the menu: \x1b[0m"<< std::endl;
     return true;
 }
 
@@ -82,10 +82,8 @@ inline int getMenuChoice(int numChoices) {
     // Keep asking until a valid choice is made
     do {
 
-        std::cout << std::endl << "> ";
+        std::cout << "\x1b[32;40m\n >\x1b[0m ";
 
-
-        std::cin.exceptions(std::istream::failbit);
         std::cin >> choice;
         std::cin.ignore();
 
@@ -109,12 +107,10 @@ inline int getMenuChoice(int numChoices) {
 inline void readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) {
     static bool called = false;
     if (called){
-        std::cout << "File already read in!"<< std::endl;
+        std::cout << "Already complete!"<< std::endl;
         return;
     }
     called = true;
-//    printMenu();
-    std::cout << "Reading...";
     int dealerNumber;
     int numberOfCars;
     int carYear;
@@ -179,14 +175,15 @@ inline void readFromFile(std::ifstream &infile, std::vector<Dealer> &inventory) 
     }
 
     infile.close();
+    /// @brief fake load function
     sleep(1);
-    std::cout << "\n\x1b[30;42m.....25%\x1b[0m" << std::endl;
+    std::cout << "\n\x1b[30;42m25%\t\x1b[0m" << std::endl;
     sleep(1);
-    std::cout << "\n\x1b[30;42m.....50%\x1b[0m" << std::endl;
+    std::cout << "\n\x1b[30;42m50%\t\t\x1b[0m" << std::endl;
     sleep(1);
-    std::cout << "\n\x1b[30;42m.....75%\x1b[0m" << std::endl;
+    std::cout << "\n\x1b[30;42m75%\t\t\t\x1b[0m" << std::endl;
     sleep(1);
-    std::cout << "\n\x1b[30;42m.....100%\x1b[0m" << std::endl;
+    std::cout << "\n\x1b[30;42m100%\t\t\t\t\x1b[0m" << std::endl;
     sleep(1);
 }
 
@@ -206,8 +203,8 @@ inline void displayCarsFromDealer(std::vector<Dealer> &inventory) {
     unsigned long dealerIndex = 0;
     bool loopBool = true;
     displayDealers(inventory);
-    std::cout << "Which dealer? Choose by number."<< std::endl
-              << " > ";
+    std::cout << "Enter the dealer number."<< std::endl
+              << "\x1b[32;40m >\x1b[0m ";
     //Checks user input against all the dealer numbers in the vector and sets "dealerIndex" to the dealer found at the index.
     while (loopBool) {
 
@@ -220,9 +217,9 @@ inline void displayCarsFromDealer(std::vector<Dealer> &inventory) {
             }
         }
         if (loopBool) {
-            std::cout << "\n\x1b[32;40mSorry, no dealers with  that number."
+            std::cout << "Sorry, no dealers with that number."
                       << " Please enter an updated number. " << std::endl
-                      << " > \x1b[0m";
+                      << "\x1b[32;40m >\x1b[0m ";
         }
     }
 
@@ -232,6 +229,7 @@ inline void displayCarsFromDealer(std::vector<Dealer> &inventory) {
     for (int i = 0; i < inventory.at(dealerIndex).getNumberOfCars(); i++) {
         std::cout << carArray[i] << "\n" << std::endl;
     }
+    sleep(3);
 }
 
 /// @brief Function displays dealers, then their inventory
@@ -251,7 +249,7 @@ inline void addCarToDealer(std::vector<Dealer> &inventory) {
 
     displayDealers(inventory);
     std::cout << "Which dealer? Choose by number."<< std::endl
-              << " > ";
+            << "\x1b[32;40m >\x1b[0m ";
     while (loopBool) {
 
         std::cin >> input;
@@ -262,35 +260,34 @@ inline void addCarToDealer(std::vector<Dealer> &inventory) {
             }
         }
         if (loopBool) {
-            std::cout << "\n\x1b[32;40mSorry, no dealers with that number."
-                      << " Please enter an updated number. " << std::endl
-                      << " > \x1b[0m";
+            std::cout << "\nSorry, no dealers with that number."
+                      << " Please enter an updated number." << std::endl
+                      << "\x1b[32;40m >\x1b[0m ";
         }
     }
     Dealer currentDealer = inventory.at(dealerIndex);
     bool loop = true;
-    std::cin.exceptions(std::istream::failbit);
     do {
 
         std::cin.ignore();
-        std::cout << "Enter new car VIN: " << std::endl
-                  << " > ";
+        std::cout << "\nEnter new car VIN: " << std::endl
+                << "\x1b[32;40m > \x1b[0m";
         std::getline(std::cin, newVin);
 
         std::cout << "Enter new car make: " << std::endl
-                  << " > ";
+                << "\x1b[32;40m > \x1b[0m";
         std::getline(std::cin, newMake);
 
         std::cout << "Enter new car model: " << std::endl
-                  << " > ";
+                << "\x1b[32;40m > \x1b[0m";
         std::getline(std::cin, newModel);
 
         std::cout << "Enter new car year: " << std::endl
-                  << " > ";
+                << "\x1b[32;40m > \x1b[0m";
         std::cin >> newYear;
 
         std::cout << "Enter new car price: " << std::endl
-                  << " > ";
+                  << "\x1b[32;40m > \x1b[0m";
         std::cin >> newPrice;
 
         Car *carArray = currentDealer.getCarArrayPtr();
@@ -332,8 +329,8 @@ inline void addCarToDealer(std::vector<Dealer> &inventory) {
         inventory.at(dealerIndex) = currentDealer;
 
         char choice;
-        std::cout << "Would you like to add another car? (y/n)" << std::endl
-                  << " > ";
+        std::cout << "Would you like to add another car? \n(y/n)" << std::endl
+                  << "\x1b[32;40m >\x1b[0m ";
         std::cin >> choice;
         switch (choice) {
             case 'y':
@@ -370,10 +367,11 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
 
         bool loopBool = true;
         displayDealers(inventory);
-        std::cout << "From the choices above. Enter the dealer number to see cars: " << std::endl;
-        std::cout << " > ";
-        /// @brief Checks input against all available dealer numbers in the vector and sets "dealerIndex" to the dealer found at the index.
-        while (loopBool) {
+        std::cout << "Enter the dealer number." << std::endl;
+        std::cout << "\x1b[32;40m >\x1b[0m ";
+
+        ///@TODO implement function to do this
+       while (loopBool) {
             std::cin >> input;
 
             for (unsigned long i = 0; i < inventory.size(); i++) {
@@ -383,8 +381,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 }
             }
             if (loopBool) {
-                std::cout << "\x1b[32;40mSorry, no dealers matched that number. Please enter an updated number. " << std::endl
-                          << " > \x1b[0m";
+                std::cout << "Sorry, no dealers matched that number. Please enter an updated number." << std::endl
+                          << "\x1b[32;40m >\x1b[0m ";
             }
         }
         bool loop = true;
@@ -397,8 +395,10 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                           << carArray[i] << "\n" << std::endl;
                 numberOfCars++;
             }
-            std::cout << "\nPlease enter the number of the car you would like to modify:"
-                      << std::endl;
+            std::cout << "\nPlease enter the number of the car you would like to modify."
+                      << std::endl
+                      << "\x1b[32;40m >\x1b[0m ";
+
             std::cin >> choice;
             std::cout << "You picked:  " << carArray[choice - 1].getYear() << " "
                       << carArray[choice - 1].getMake() << " "
@@ -415,8 +415,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 case 1: {
                     std::string newVIN;
                     std::cout << "Current Vin: " << carArray[choice - 1].getVIN() << std::endl
-                              << "Please enter new VIN: " << std::endl
-                              << " > ";
+                              << "Please enter new VIN. " << std::endl
+                              << "\x1b[32;40m >\x1b[0m ";
                     std::cin.ignore();
                     std::getline(std::cin, newVIN);
                     carArray[choice - 1].setVIN(newVIN);
@@ -425,8 +425,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 case 2: {
                     std::string newMake;
                     std::cout << "Current Make: " << carArray[choice - 1].getMake() << std::endl
-                              << "Please enter new make: " << std::endl
-                              << " > ";
+                              << "Please enter new make. " << std::endl
+                              << "\x1b[32;40m >\x1b[0m ";
                     std::cin.ignore();
                     std::getline(std::cin, newMake);
                     carArray[choice - 1].setMake(newMake);
@@ -435,8 +435,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 case 3: {
                     std::string newModel;
                     std::cout << "Current Model: " << carArray[choice - 1].getModel() << std::endl
-                              << "Please enter new model: " << std::endl
-                              << " > ";
+                              << "Please enter new model. " << std::endl
+                              << "\x1b[32;40m >\x1b[0m ";
                     std::cin.ignore();
                     std::getline(std::cin, newModel);
                     carArray[choice - 1].setModel(newModel);
@@ -445,8 +445,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 case 4: {
                     int newYear;
                     std::cout << "Current Year: " << carArray[choice - 1].getYear() << std::endl
-                              << "Please enter new year: " << std::endl
-                              << " > ";
+                              << "Please enter new year. " << std::endl
+                              << "\x1b[32;40m >\x1b[0m ";
                     std::cin.ignore();
                     std::cin >> newYear;
                     carArray[choice - 1].setYear(newYear);
@@ -455,8 +455,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
                 case 5: {
                     double newPrice;
                     std::cout << "Current Price: " << carArray[choice - 1].getPrice() << std::endl
-                              << "Please enter new price: " << std::endl
-                              << " > ";
+                              << "Please enter new price. " << std::endl
+                              << "\x1b[32;40m >\x1b[0m ";
                     std::cin.ignore();
                     std::cin >> newPrice;
                     carArray[choice - 1].setPrice(newPrice);
@@ -467,8 +467,8 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
             }
             char choice3;
 
-            std::cout << "Would you like to modify another car?"<< std::endl
-                      << " > ";
+            std::cout << "Would you like to modify another car? \n(y/n)"<< std::endl
+                     << "\x1b[32;40m >\x1b[0m ";
 
             std::cin >> choice3;
 
@@ -491,14 +491,14 @@ inline void listAndModifyCar(std::vector<Dealer> &inventory) {
 
 /// @brief Function bubble sorts cars by  vin
 /// @param inventory Vector to hold dealers
-inline void sortCarsFromDealer(std::vector<Dealer> &inventory) {
+inline void sortCars(std::vector<Dealer> &inventory) {
     int input = 0;
     unsigned long dealerIndex = 0;
     bool running = true;
 
     displayDealers(inventory);
-    std::cout << "\x1b[32;40mEnter the dealer number to sort by VIN: "
-              << " > \x1b[0m";
+    std::cout << "Enter the dealer number to sort by VIN."
+              << "\x1b[32;40m >\x1b[0m ";
 
     while (running) {
 
@@ -510,9 +510,9 @@ inline void sortCarsFromDealer(std::vector<Dealer> &inventory) {
                 running = false;
             }
         }
-        if (running) {
-            std::cout << "\x1b[32;40mSorry, no dealers matched that number. Please enter an updated number. " << std::endl
-                      << " > \x1b[0m";
+if (running) {
+            std::cout << "Sorry, no dealers matched that number. Please enter an updated number." << std::endl
+                      << "\x1b[32;40m >\x1b[0m ";
         }
     }
     std::cout << std::endl;
@@ -536,6 +536,7 @@ inline void sortCarsFromDealer(std::vector<Dealer> &inventory) {
     for (int k = 0; k < inventory.at(dealerIndex).getNumberOfCars(); k++) {
         std::cout << carArray[k] << std::endl << std::endl;
     }
+    sleep(3);
 }
 
 /// @brief Function to export data to file
@@ -544,7 +545,7 @@ inline void sortCarsFromDealer(std::vector<Dealer> &inventory) {
 ///@TODO integrate BOOST serialization
 inline void writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &inventory) {
 
-    std::cout << "\x1b[32;40mWriting data to outfile.txt" << std::endl;
+    std::cout << "Writing data to outfile.txt" << std::endl;
 
     outfile.open("../outfile.txt");
 
@@ -567,7 +568,7 @@ inline void writeDealersCarsToFile(std::ofstream &outfile, std::vector<Dealer> &
         }
     }
     outfile.close();
-    std::cout << "Complete!\x1b[0m" << std::endl;
+    sleep(1);
 }
 
 
